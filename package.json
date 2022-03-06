@@ -1,0 +1,17 @@
+{
+  "name": "sof-crawler",
+  "version": "1.0.0",
+  "description": "a simple stackoverflow crawler",
+  "main": "index.js",
+  "repository": "https://github.com/nair-sreerag/stackoverflow-crawler.git",
+  "author": "Sreerag Nair <sreerag@getvisitapp.com>",
+  "license": "MIT",
+  "scripts" : {
+    "start": "node src | bunyan"
+  },
+  "dependencies": {
+    "axios": "^0.26.0",
+    "bluebird": "^3.7.2",
+    "bunyan": "^1.8.15"
+  }
+}
