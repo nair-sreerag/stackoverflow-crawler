@@ -6,12 +6,20 @@
   "repository": "https://github.com/nair-sreerag/stackoverflow-crawler.git",
   "author": "Sreerag Nair <sreerag@getvisitapp.com>",
   "license": "MIT",
-  "scripts" : {
-    "start": "node src | bunyan"
+  "scripts": {
+    "start": "node src | bunyan",
+    "db_rollback": "knex migrate:rollback",
+    "migrate" : "knex migrate:latest",
+    "cleandb" : "knex migrate:rollback && knex migrate:latest"
+
   },
   "dependencies": {
     "axios": "^0.26.0",
     "bluebird": "^3.7.2",
-    "bunyan": "^1.8.15"
+    "bunyan": "^1.8.15",
+    "cheerio": "^1.0.0-rc.10",
+    "knex": "^1.0.3",
+    "mysql2": "^2.3.3",
+    "objection": "^3.0.1"
   }
 }
