@@ -33,6 +33,7 @@ exports.scrapeSOF = async (page) => {
             logger.info({ insertId, link, questionId, upvoteCount, answerCount } , 'committing links found in page')
             await Promise.map(relatedSectionLinks, async (link) => {
                 await db.commitUrlFoundInRelatedSection({ found_in: insertId, url: link });
+                await db.commitUrlFoundInQuestionsPage({ url: link }); // update the ref count
             }) 
 
         }, {
