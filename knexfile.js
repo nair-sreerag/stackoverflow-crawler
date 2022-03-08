@@ -7,7 +7,7 @@
 const { SERVER } = require("./config");
 const { username, password, host, port, database } = SERVER;
 
-module.exports = {
+const configs = {
   development: {
     client: "mysql2",
     connection: {
@@ -44,3 +44,5 @@ module.exports = {
     },
   },
 };
+
+module.exports = configs[process.env.NODE_ENV || 'development'];

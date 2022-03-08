@@ -9,8 +9,12 @@ exports.up = function (knex) {
 
       table.string("url").notNullable().unique().index();
       table.bigInteger("ref_count").defaultTo(0);
-      table.bigInteger("upvote_count").defaultTo(0);
-      table.bigInteger("answer_count").defaultTo(0);
+      // table.bigInteger("page_number").defaultTo(0).comment('stores the page number it was found in');
+      table.bigInteger("upvote_count").nullable();
+      table.bigInteger("answer_count").nullable();
+      
+      table.bigInteger("question_id").nullable().comment('the stackoverflow question id');
+      table.datetime("datetime_asked").comment('stores the datetime the question was asked on');
 
       // table.timestamps(false, true);
 
@@ -23,20 +27,25 @@ exports.up = function (knex) {
         .notNullable()
         .defaultTo(knex.raw("CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP"));
     })
+
+
+    //  REF_TABLE
     .createTableIfNotExists("ref_storage", (table) => {
       table.increments("id").unsigned().primary();
+
       table
-        .bigInteger("ref_id")
-        .comment(
-          "reference of the url which is already stored in the urls table"
-        )
-        .defaultTo(0)
-        .notNullable();
+      .string("found_in")
+      .comment(
+        "this stores the reference of the page the ref url was found in"
+      )
+      .notNullable();
+
       table
-        .string("found_in")
+        .string("url")
         .comment(
-          "this stores the reference of the page the ref url was found in"
-        )
+          // "reference of the url which is already stored in the urls table"
+        "url found in the related section of a question"
+          )
         .notNullable();
 
       table

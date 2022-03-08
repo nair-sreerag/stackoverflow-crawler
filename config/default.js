@@ -5,3 +5,5 @@ exports.SERVER = {
     port: '3306',
     database: 'sof_crawler',
 };
+
+exports.REQUEST_CONCURRENCY = 5;
